@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoService } from './../services/todo.service';
 
 @Component({
   selector: 'app-input',
@@ -13,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputComponent implements OnInit {
 
-    constructor() { }
+    constructor(private todoService: TodoService) { }
 
     ngOnInit() {
     }
@@ -22,8 +23,7 @@ export class InputComponent implements OnInit {
     handleEnterKey (event: any):void {
         const input = event.target.value.trim();
         if (input != '') {
-            console.log(input);
-            // handle service here
+            this.todoService.createTodo(input);
             event.target.value = '';
         }
     }

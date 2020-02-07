@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TodosComponent } from './todos/todos.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { InputComponent } from './input/input.component';
+import { TodoService } from './services/todo.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { InputComponent } from './input/input.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
