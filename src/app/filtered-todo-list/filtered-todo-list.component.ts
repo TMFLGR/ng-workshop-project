@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Todo } from '../services/Todo';
 import { TodoService } from '../services/todo.service';
 
@@ -7,7 +7,7 @@ import { TodoService } from '../services/todo.service';
   templateUrl: './filtered-todo-list.component.html',
   styleUrls: ['./filtered-todo-list.component.css']
 })
-export class FilteredTodoListComponent implements OnInit {
+export class FilteredTodoListComponent implements OnInit, DoCheck {
 
     doneTodos: Todo[];
 
@@ -17,6 +17,13 @@ export class FilteredTodoListComponent implements OnInit {
 
     ngOnInit() {
         this.doneTodos = this.todoService.getOnlyDoneTodos();
+    }
+
+    ngDoCheck() {
+        const changedTodos: Todo[] = this.todoService.getOnlyDoneTodos();
+        if(this.doneTodos.length != changedTodos.length) {
+            this.doneTodos = changedTodos;
+        }
     }
 
     // clickhandler to set or unset the todo done
