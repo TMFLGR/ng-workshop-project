@@ -1,34 +1,16 @@
 <div class="list-component">
     <ul class="list">
         <!-- Todo Item -->
-        <li class="complete"
-            *ngFor="let todo of todos;"
-            [ngClass]="{'complete': todo.isDone, 'editing': todo.editIsActive}"
-        >
-            <div class="item">
-                <input
-                    class="done-button"
-                    type="checkbox"
-                    [checked]="todo.isDone"
-                    [disabled]="editMode"
-                    (change)="editMode || handleToggleDoneClick(todo.id)"
-                />
-                <span (dblclick)="(editMode || todo.isDone ) || handleSetEditMode(todo.id)">
-                    {{todo.name}}
-                </span>
-                <button
-                    class="delete-button"
-                    (click)="editMode || handleDeleteClick(todo.id)"
-                ></button>
-            </div>
-            <input
-                #edit
-                class="edit"
-                [value]="todo.name"
-                (keyup.enter)="handleUnsetEditMode(todo.id, edit.value)"
-                (blur)="handleUnsetEditMode(todo.id, edit.value)"
-            />
-        </li>
+            <app-todo-item
+                *ngFor="let todo of todos;"
+                [todo]="todo"
+                [editMode]="editMode"
+                [lockTodoEdit]="false"
+                (toggleDone)="handleToggleDoneClick(todo.id)"
+                (clickDelete)="handleDeleteClick(todo.id)"
+                (setEditMode)="handleSetEditMode(todo.id)"
+                (unsetEditMode)="handleUnsetEditMode(todo.id, $event)"
+                ></app-todo-item>
          <!-- Todo Item End-->
     </ul>
 </div>

@@ -1,0 +1,28 @@
+<li class="complete"
+    [ngClass]="{'complete': todo.isDone, 'editing': todo.editIsActive}"
+>
+    <div class="item">
+        <input
+            class="done-button"
+            type="checkbox"
+            [checked]="todo.isDone"
+            [disabled]="editMode"
+            (change)="editMode || handleToggleDoneClick()"
+        />
+        <span (dblclick)="(editMode || todo.isDone || lockTodoEdit) || handleSetEditMode()">
+            {{todo.name}}
+        </span>
+        <button
+            class="delete-button"
+            (click)="editMode || handleDeleteClick()"
+        ></button>
+    </div>
+    <input
+        *ngIf="!lockTodoEdit"
+        #edit
+        class="edit"
+        [value]="todo.name"
+        (keyup.enter)="handleUnsetEditMode(edit.value)"
+        (blur)="handleUnsetEditMode(edit.value)"
+    />
+</li>

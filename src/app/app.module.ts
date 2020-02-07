@@ -8,6 +8,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { InputComponent } from './input/input.component';
 import { TodoService } from './services/todo.service';
 import { FilteredTodoListComponent } from './filtered-todo-list/filtered-todo-list.component';
+import { TodoItemComponent } from './todo-item/todo-item.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FilteredTodoListComponent } from './filtered-todo-list/filtered-todo-li
     TodosComponent,
     TodoListComponent,
     InputComponent,
-    FilteredTodoListComponent
+    FilteredTodoListComponent,
+    TodoItemComponent
   ],
   imports: [
     BrowserModule,
