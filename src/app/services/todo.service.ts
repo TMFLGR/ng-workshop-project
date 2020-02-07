@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './Todo';
+import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +10,16 @@ export class TodoService {
     todos: Todo[];
     todoId: number;
 
-    constructor() {
+    constructor(private http: HttpClient) {
         this.todos = [];
         this.todoId = 1;
     }
+
+    httpGetTodos (): any {
+        return this.http.get<any>(environment.apiUrl + '/todos')
+    }
+
+
 
     // getter for all todos
     getTodos(): Todo[] {

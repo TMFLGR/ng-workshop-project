@@ -11,13 +11,37 @@ export class TodoListComponent implements OnInit {
 
     editMode: boolean;
     todos: Todo[];
+    httpLoading: boolean;
+    httpError: any;
 
     constructor(private todoService: TodoService) {
         this.editMode = false;
+        this.todos = [];
+        this.httpLoading = false;
+        this.httpError = null;
+    }
+
+    setHttpTodos(todos: Todo[]): void {
+        this.todos = todos;
     }
 
     ngOnInit() {
-        this.todos = this.todoService.getTodos();
+        this.httpLoading = true;
+        this.httpError = null;
+        this.todoService.httpGetTodos()
+            .subscribe(
+                (data) => {
+                    // request successful
+                    this.httpLoading = false;
+                    this.todos = data;
+                    console.log(data);
+                },
+                (error) => {
+                    // request failed
+                    this.httpLoading = false;
+                    this.httpError = error;
+                }
+            );
     }
 
     // clickhandler to delete a todo on button click
