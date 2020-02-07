@@ -1,32 +1,38 @@
 <div class="list-component">
     <ul class="list">
-        <li class="complete">
+        <!-- Todo Item -->
+        <li class="complete"
+            *ngFor="let todo of todos;"
+            [ngClass]="{'complete': todo.isDone, 'editing': todo.editIsActive}"
+        >
             <div class="item">
-                <input class="done-button" type="checkbox" checked>
-                <span>buy a unicorn (urgent)</span>
-                <button class="delete-button"></button>
+                <input
+                    class="done-button"
+                    type="checkbox"
+                    [checked]="todo.isDone"
+                    [disabled]="editMode"
+                    (change)="editMode || handleToggleDoneClick(todo.id)"
+                />
+                <span (dblclick)="(editMode || todo.isDone ) || handleSetEditMode(todo.id)">
+                    {{todo.name}}
+                </span>
+                <button
+                    class="delete-button"
+                    (click)="editMode || handleDeleteClick(todo.id)"
+                ></button>
             </div>
-            <input class="edit" value="buy a unicorn (urgent)">
+            <input
+                #edit
+                class="edit"
+                [value]="todo.name"
+                (keyup.enter)="handleUnsetEditMode(todo.id, edit.value)"
+                (blur)="handleUnsetEditMode(todo.id, edit.value)"
+            />
         </li>
-        <li class="editing">
-            <div class="item">
-                <input class="done-button" type="checkbox">
-                <span>eat some variables</span>
-                <button class="delete-button"></button>
-            </div>
-            <input class="edit" value="eat some variables">
-        </li>
-        <li>
-            <div class="item">
-                <input class="done-button" type="checkbox">
-                <span>taste some typescript</span>
-                <button class="delete-button"></button>
-            </div>
-            <input class="edit" value="taste some typescript">
-        </li>
+         <!-- Todo Item End-->
     </ul>
 </div>
 <div class="footer">
-    <span class="todo-count">0 todos/s left</span>
+    <span class="todo-count">{{countUndoneTodos()}} todos left</span>
 </div>
 
