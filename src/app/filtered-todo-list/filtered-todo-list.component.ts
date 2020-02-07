@@ -24,4 +24,8 @@ export class FilteredTodoListComponent implements OnInit {
         this.todoService.updateTodoDone(todoId);
     }
 
+    // clickhandler to delete the todo item
+    handleDeleteClick (todoId: number): void {
+        this.todoService.deleteTodo(todoId);
+    }
 }

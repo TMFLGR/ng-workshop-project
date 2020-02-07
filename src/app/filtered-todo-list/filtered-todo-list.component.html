@@ -2,13 +2,22 @@
 <div class="todolist">
     <div class="list-all-component">
         <ul class="list-all">
-            <li class="complete" >
+            <li
+                class="complete"
+                *ngFor="let todo of doneTodos;"
+                >
                 <div class="item">
                     <input
                         class="done-button"
                         type="checkbox"
+                        [checked]="isDone"
+                        (change)="handleTodoDoneClick(todo.id)"
                     />
-                    <span>I am done!</span>
+                    <span>{{todo.name}}</span>
+                    <button
+                        class="delete-button"
+                        (click)="handleDeleteClick(todo.id)"
+                    ></button>
                 </div>
             </li>
         </ul>
