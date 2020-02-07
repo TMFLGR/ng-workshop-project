@@ -18,6 +18,12 @@ export class TodoService {
         return this.todos;
     }
 
+    // getter for only done todos
+    getOnlyDoneTodos(): Todo[] {
+        const filter = this.todos.filter(todo => todo.isDone);
+        return filter;
+    }
+
     // find todoitem index inside array by todo id
     findTodoIndexById(todoId: number): number {
         return this.todos.findIndex(object => object.id === todoId);

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Todo } from '../services/Todo';
+import { TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-filtered-todo-list',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilteredTodoListComponent implements OnInit {
 
-  constructor() { }
+    doneTodos: Todo[];
 
-  ngOnInit() {
-  }
+    constructor(private todoService: TodoService) {
+        this.doneTodos = [];
+    }
+
+    ngOnInit() {
+        this.doneTodos = this.todoService.getOnlyDoneTodos();
+    }
+
+    // clickhandler to set or unset the todo done
+    handleTodoDoneClick (todoId: number): void {
+        this.todoService.updateTodoDone(todoId);
+    }
 
 }
