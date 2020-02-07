@@ -7,13 +7,15 @@ import { TodosComponent } from './todos/todos.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { InputComponent } from './input/input.component';
 import { TodoService } from './services/todo.service';
+import { FilteredTodoListComponent } from './filtered-todo-list/filtered-todo-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodosComponent,
     TodoListComponent,
-    InputComponent
+    InputComponent,
+    FilteredTodoListComponent
   ],
   imports: [
     BrowserModule,
