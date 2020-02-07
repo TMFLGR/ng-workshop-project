@@ -18,6 +18,7 @@ export class InputComponent implements OnInit {
     ngOnInit() {
     }
 
+    // handler for the enter event inside the component input
     handleEnterKey (event: any):void {
         const input = event.target.value.trim();
         if (input != '') {
