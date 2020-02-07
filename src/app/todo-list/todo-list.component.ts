@@ -1,13 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-
-class Todo {
-    id: number;
-    name: string;
-    isDone: boolean;
-    editIsActive: boolean;
-}
-
+import { Todo } from './../services/Todo';
 
 @Component({
   selector: 'app-todo-list',
