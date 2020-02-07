@@ -1,6 +1,12 @@
 <h1>already done</h1>
 <div class="todolist">
     <div class="list-all-component">
+        <div
+            class="nothing-found"
+            *ngIf="doneTodos.length < 1"
+        >
+            Nothing done yet... hurry up!
+        </div>
         <ul class="list-all">
             <app-todo-item
                 *ngFor="let todo of doneTodos;"
